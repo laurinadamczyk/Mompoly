@@ -3,13 +3,16 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 public class GUIMompoly extends JDialog {
-    static ArrayList<Spieler> spieler= new ArrayList<>();
+    static ArrayList<Spieler> spielerliste = new ArrayList<>();
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JButton bWuerfel;
+    private JButton bKaufen;
 
-    public GUIMompoly() {
+
+    public GUIMompoly(JButton bKaufen) {
+        this.bKaufen = bKaufen;
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -32,6 +35,13 @@ public class GUIMompoly extends JDialog {
             }
         });
 
+        this.bKaufen.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onKaufen();
+            }
+        });
+
+
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
@@ -53,26 +63,37 @@ public class GUIMompoly extends JDialog {
         dispose();
     }
 
+    private void onKaufen() {
+        if(i==spielerliste.size()-1){
+            i=0;
+        } else {
+            i=i+1;
+        }
+        spielerliste.get(i).kaufeFeld();
+
+    }
+
     private void onCancel() {
         // add your code here if necessary
         dispose();
     }
 
-
-    private int i=0;
+   private int i = 0;
     private void onWuerfel(){
 
-        if(i==spieler.size()-1){
+        if(i==spielerliste.size()-1){
             i=0;
         } else {
             i=i+1;
         }
-        spieler.get(i).zug();
+        spielerliste.get(i).zug();
+        if(spielerliste.get(i).getKontostand() < Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getKaufpreis()){
+            bKaufen.setVisible(false);
+        }
 
-
-        System.out.println(spieler.get(i));
-        System.out.println(spieler.get(i).aktuellerIndex);
-        System.out.println(spieler.get(i).kontostand);
+        System.out.println(spielerliste.get(i));
+        System.out.println(spielerliste.get(i).aktuellerIndex);
+        System.out.println(spielerliste.get(i).kontostand);
         System.out.println("");
     }
 
@@ -82,24 +103,22 @@ public class GUIMompoly extends JDialog {
     static Spieler sp2= new Spieler();
 
     public static void main(String[] args) {
-            spieler.add(sp1);
-            spieler.add(sp2);
+            spielerliste.add(sp1);
+            spielerliste.add(sp2);
             Spielbrett s1 = new Spielbrett();
             s1.erstelleSpielbrett();
             System.out.println((s1.felderListe[sp1.aktuellerIndex]).getKaufpreis());
             Feld aktuellesFeld = s1.felderListe[sp1.aktuellerIndex];
-            if(aktuellesFeld.getKaufpreis() == 0){
-                aktuellesFeld.ereignisAusführen(sp1.aktuellerIndex);
 
+            aktuellesFeld.ereignisAusführen(sp1.aktuellerIndex);
 
-            }
             //Erstellung aller Felder mit Attributen, Index für das Array "felderList
 
 
-            GUIMompoly dialog = new GUIMompoly();
+            GUIMompoly dialog = new GUIMompoly(bKaufen);
             dialog.pack();
             dialog.setVisible(true);
             System.exit(0);
-        }
+    }
 }
 

@@ -2,10 +2,19 @@ import java.util.LinkedList;
 public class Spieler {
     public int aktuellerIndex;
     public int kontostand = 2000;
-    public void ueberweisung(int summe){
-        this.kontostand = kontostand + summe;
-    }
     LinkedList<Feld> besitzListe = new LinkedList<>(); // liste für alle straßen in besitz
+
+    public int getKontostand() {
+        return kontostand;
+    }
+
+    public void setKontostand(int kontostand) {
+        this.kontostand = kontostand;
+    }
+
+    public void kaufeFeld(){
+        besitzListe.add(Spielbrett.felderListe[aktuellerIndex]);
+    }
     public void zug(){ //eine runde würfeln
         int returnwert;
         int wuerfel1 = (int)((Math.random())*6 + 1);

@@ -1,6 +1,6 @@
 import java.lang.Math;
 public class Spielbrett {
-    Feld[] felderListe = new Feld[41]; //erstellung array für felder
+    static Feld[] felderListe = new Feld[41]; //erstellung array für felder
     public void erstelleSpielbrett(){ //erstellung aller felder
         Ereignisfeld Los = new Ereignisfeld ( 0);
         Straße Badstraße = new Straße("Braun", 1, 60, 2);

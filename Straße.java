@@ -2,15 +2,17 @@ public class Straße implements Feld {
     String farbe;
     int index;
     int kaufpreis;
+    public boolean zuKaufen = true;
     public int getIndex() {
         return index;
     }
     int startpreis;
     boolean besitzstatus;
     @Override
-    public void ereignisAusführen(int aktuellerIndex) {
+    public void ereignisAusführen(int aktuellerIndex){
 
     }
+
     int preisstufe; //stufe 1 = grundmiete, stufe 2 = grundmiete verdoppelt, stufe 3 = 1, stufe 4 = 2 häuser, stufe 5 = 3 häuser, stufe 6 = 4 häsuer, stufe 7 = 5 häuser
     public int getKaufpreis() {
         return kaufpreis;
