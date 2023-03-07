@@ -2,6 +2,10 @@ public class Ereignisfeld implements Feld{
 
     int index;
     final int kaufpreis = 0;
+    boolean zuKaufen= false;
+    public void setZuKaufen(boolean i){
+        zuKaufen = false;
+    }
     @Override
     public int getIndex() {
         return index;

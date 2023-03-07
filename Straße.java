@@ -47,7 +47,9 @@ public class Straße implements Feld {
         int endpreis = startpreis * preisberechnung;
         return endpreis;
     }
-
+    public void setZuKaufen(boolean i){
+        zuKaufen = i;
+    }
     public boolean getZuKaufen(){
         return zuKaufen;
     }

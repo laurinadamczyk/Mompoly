@@ -8,6 +8,9 @@ public class Spieler {
     public int getKontostand() {
         return kontostand;
     }
+    public int getAktuellerIndex(){
+        return aktuellerIndex;
+    }
 
     public void setKontostand(int kontostand) {
         this.kontostand = kontostand;
@@ -27,8 +30,13 @@ public class Spieler {
         }
 
         else{
-            besitzListe.add(Spielbrett.felderListe[aktuellerIndex]);
-            System.out.println("Du hast soeben" + besitzListe.get(Spielbrett.felderListe[aktuellerIndex].getKaufpreis()));
+            GUI.spielerliste.get(GUI.getAktuellerSpieler()).besitzListe.add(Spielbrett.felderListe[aktuellerIndex]);
+            GUI.spielerliste.get(GUI.getAktuellerSpieler()).setKontostand(GUI.spielerliste.get(GUI.getAktuellerSpieler()).getKontostand() - Spielbrett.felderListe[aktuellerIndex].getKaufpreis());
+            Spielbrett.felderListe[aktuellerIndex].setZuKaufen(false);
+            System.out.println("Du hast soeben das Gebäude mit dem Index " + GUI.spielerliste.get(GUI.getAktuellerSpieler()).getAktuellerIndex() + " gekauft." );
+            System.out.println("Kaufpreis: " + Spielbrett.felderListe[aktuellerIndex].getKaufpreis());
+            System.out.println("Kontostand: " + GUI.spielerliste.get(GUI.getAktuellerSpieler()).getKontostand());
+            System.out.println("");
         }
 
 

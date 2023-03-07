@@ -2,6 +2,7 @@ public class Bahnhof implements Feld{
     int index;
     int preisstufe;
     int kaufpreis = 200;
+    boolean zuKaufen=true;
 
 
     public void ereignisAusführen(int aktuellerIndex) {
@@ -20,10 +21,12 @@ public class Bahnhof implements Feld{
     public int getKaufpreis(){
         return kaufpreis;
     }
-
+    public void setZuKaufen(boolean i){
+        zuKaufen = i;
+    }
     @Override
     public boolean getZuKaufen() {
-        return false;
+        return zuKaufen;
     }
 
 
