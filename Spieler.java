@@ -1,8 +1,9 @@
-import java.util.LinkedList;
+import java.util.*;
+
 public class Spieler {
     public int aktuellerIndex;
     public int kontostand = 2000;
-    LinkedList<Feld> besitzListe = new LinkedList<>(); // liste für alle straßen in besitz
+    ArrayList<Feld> besitzListe = new ArrayList<>(); // Liste für alle Straßen in Besitz
 
     public int getKontostand() {
         return kontostand;
@@ -13,7 +14,24 @@ public class Spieler {
     }
 
     public void kaufeFeld(){
-        besitzListe.add(Spielbrett.felderListe[aktuellerIndex]);
+        if(Spielbrett.felderListe[aktuellerIndex].getKaufpreis()==0){
+            System.out.println("Dieses Feld kann nicht gekauft werden");
+        }
+
+        else if (Spielbrett.felderListe[aktuellerIndex].getZuKaufen()==false) {
+            System.out.println("Das Feld wurde bereits gekauft");
+        }
+
+        else if (kontostand<Spielbrett.felderListe[aktuellerIndex].getKaufpreis()){
+            System.out.println("Du hast nicht genug Geld");
+        }
+
+        else{
+            besitzListe.add(Spielbrett.felderListe[aktuellerIndex]);
+            System.out.println("Du hast soeben" + besitzListe.get(Spielbrett.felderListe[aktuellerIndex].getKaufpreis()));
+        }
+
+
     }
     public void zug(){ //eine runde würfeln
         int returnwert;

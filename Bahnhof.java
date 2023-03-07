@@ -2,6 +2,8 @@ public class Bahnhof implements Feld{
     int index;
     int preisstufe;
     int kaufpreis = 200;
+
+
     public void ereignisAusführen(int aktuellerIndex) {
         switch(aktuellerIndex){
             case 5:  //bhf1
@@ -16,11 +18,20 @@ public class Bahnhof implements Feld{
         }
     }
     public int getKaufpreis(){
-        return 200;
+        return kaufpreis;
     }
+
+    @Override
+    public boolean getZuKaufen() {
+        return false;
+    }
+
+
     public int getIndex() {
         return index;
     }
+
+
     public Bahnhof(int index){
         this.index = index;
     }

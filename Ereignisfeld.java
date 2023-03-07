@@ -1,14 +1,23 @@
 public class Ereignisfeld implements Feld{
+
     int index;
     final int kaufpreis = 0;
     @Override
     public int getIndex() {
         return index;
     }
+
+
     @Override
     public int getKaufpreis() {
         return kaufpreis;
     }
+
+    @Override
+    public boolean getZuKaufen() {
+        return false;
+    }
+
     public void ereignisAusführen(int aktuellerIndex){
         switch(aktuellerIndex){
             case 2, 17, 33: System.out.println("gemeischaftskarte");//gemeinschaftskarte ziehen
@@ -32,4 +41,5 @@ public class Ereignisfeld implements Feld{
     public Ereignisfeld(int index){
         this.index = index;
     }
+
 }
