@@ -12,8 +12,8 @@ public class Spieler {
         return aktuellerIndex;
     }
 
-    public void setKontostand(int kontostand) {
-        this.kontostand = kontostand;
+    public void setKontostand(int preis) {
+        this.kontostand = this.kontostand + preis;
     }
 
     public void kaufeFeld(){
@@ -31,12 +31,12 @@ public class Spieler {
 
         else{
             GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).besitzListe.add(Spielbrett.felderListe[aktuellerIndex]);
-            GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).setKontostand(GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).getKontostand() - Spielbrett.felderListe[aktuellerIndex].getKaufpreis());
+            GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).setKontostand(  - Spielbrett.felderListe[aktuellerIndex].getKaufpreis());
             Spielbrett.felderListe[aktuellerIndex].setZuKaufen(false);
-            System.out.println(GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()) + "hat soeben die Straße mit dem Index " + GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).getAktuellerIndex() + " gekauft." );
+            System.out.println(GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()) + " hat soeben die Straße mit dem Index " + GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).getAktuellerIndex() + " gekauft." );
             System.out.println("Kaufpreis: " + Spielbrett.felderListe[aktuellerIndex].getKaufpreis());
             System.out.println("Kontostand: " + GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).getKontostand());
-            System.out.println("");
+
         }
 
 
@@ -54,4 +54,10 @@ public class Spieler {
         }
         aktuellerIndex = returnwert;
     }
+    public void bezahleMiete(){
+        kontostand = kontostand - Spielbrett.felderListe[aktuellerIndex].berechnePreis();
+        Spielbrett.felderListe[GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).aktuellerIndex].getBesitzer().setKontostand(Spielbrett.felderListe[GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).aktuellerIndex].berechnePreis());
+
+    }
+
 }

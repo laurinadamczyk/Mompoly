@@ -3,10 +3,16 @@ public class Straße implements Feld {
     int index;
     int kaufpreis;
     boolean zuKaufen=true;
+    public Spieler besitzer;
 
     public int getIndex() {
         return index;
     }
+
+    public void setBesitzer(Spieler besitzer) {
+        this.besitzer = besitzer;
+    }
+    public Spieler getBesitzer(){return besitzer;}
 
 
     int startpreis;
@@ -17,6 +23,9 @@ public class Straße implements Feld {
     }
 
     int preisstufe; //stufe 1 = grundmiete, stufe 2 = grundmiete verdoppelt, stufe 3 = 1, stufe 4 = 2 häuser, stufe 5 = 3 häuser, stufe 6 = 4 häsuer, stufe 7 = 5 häuser
+    public void setPreisstufe(int preisstufe){
+        this.preisstufe = preisstufe;
+    }
     public int getKaufpreis() {
         return kaufpreis;
 
@@ -47,6 +56,7 @@ public class Straße implements Feld {
         int endpreis = startpreis * preisberechnung;
         return endpreis;
     }
+
     public void setZuKaufen(boolean i){
         zuKaufen = i;
     }

@@ -4,6 +4,11 @@ public class Bahnhof implements Feld{
     int kaufpreis = 200;
     boolean zuKaufen=true;
 
+    public int berechnePreis(){return 0;}
+    public void setBesitzer(Spieler spieler){}
+    public Spieler getBesitzer(){return null;}
+    public void setPreisstufe(int preisstufe){}
+
 
     public void ereignisAusführen(int aktuellerIndex) {
         switch(aktuellerIndex){

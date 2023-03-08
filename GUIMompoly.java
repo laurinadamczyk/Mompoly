@@ -16,6 +16,7 @@ public class GUIMompoly extends JDialog {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
+        bKaufen.setVisible(false);
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -68,6 +69,12 @@ public class GUIMompoly extends JDialog {
 
     private void onKaufen() {
         spielerliste.get(i).kaufeFeld();
+        bKaufen.setVisible(false);
+        Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].setBesitzer(spielerliste.get(i));
+        spielerliste.get(i).besitzListe.add(Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex]);
+        Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].setPreisstufe(1);
+
+
     }
 
     private void onCancel() {
@@ -77,14 +84,25 @@ public class GUIMompoly extends JDialog {
 
 
     private void onWuerfel(){
-
+        bKaufen.setVisible(true);
         if(i==spielerliste.size()-1){
             i=0;
         } else {
             i=i+1;
         }
         spielerliste.get(i).zug();
-        if(spielerliste.get(i).getKontostand() < Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getKaufpreis()){
+        if(Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getKaufpreis()==0){
+            bKaufen.setVisible(false);
+        }
+
+        else if (Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getZuKaufen()==false) {
+            bKaufen.setVisible(false);
+            spielerliste.get(i).bezahleMiete();
+            System.out.println(spielerliste.get(i) + " bezahlt Miete ("+ Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].berechnePreis() +") an " + Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getBesitzer());
+            System.out.println("");
+        }
+
+        else if (spielerliste.get(i).kontostand<Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getKaufpreis()){
             bKaufen.setVisible(false);
         }
 
@@ -93,7 +111,6 @@ public class GUIMompoly extends JDialog {
         System.out.println("Kontostand: " + spielerliste.get(i).kontostand);
         System.out.println("");
     }
-
 
 
     static Spieler sp1= new Spieler();

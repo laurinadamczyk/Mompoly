@@ -6,6 +6,11 @@ public class Ereignisfeld implements Feld{
     public void setZuKaufen(boolean i){
         zuKaufen = false;
     }
+
+    public int berechnePreis(){return 0;}
+    public void setBesitzer(Spieler spieler){}
+    public Spieler getBesitzer(){return null;}
+    public void setPreisstufe(int preisstufe){}
     @Override
     public int getIndex() {
         return index;
