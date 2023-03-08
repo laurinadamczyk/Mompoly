@@ -7,7 +7,9 @@ public interface Feld{
     public int berechnePreis();
     public void setBesitzer(Spieler spieler);
     public Spieler getBesitzer();
-     public void setPreisstufe(int preisstufe);
+    public void setPreisstufe(int preisstufe);
+    public String getFarbe();
+
 
 
 

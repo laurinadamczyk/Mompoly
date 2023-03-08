@@ -13,6 +13,7 @@ public class Straße implements Feld {
         this.besitzer = besitzer;
     }
     public Spieler getBesitzer(){return besitzer;}
+    public String getFarbe(){return this.farbe;}
 
 
     int startpreis;

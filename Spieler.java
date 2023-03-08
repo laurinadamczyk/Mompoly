@@ -4,6 +4,7 @@ public class Spieler {
     public int aktuellerIndex;
     public int kontostand = 2000;
     ArrayList<Feld> besitzListe = new ArrayList<>(); // Liste für alle Straßen in Besitz
+    public int bahnhofsAnzahl = 0;
 
     public int getKontostand() {
         return kontostand;
@@ -14,6 +15,9 @@ public class Spieler {
 
     public void setKontostand(int preis) {
         this.kontostand = this.kontostand + preis;
+    }
+    public int getBahnhofsAnzahl(){
+        return this.bahnhofsAnzahl;
     }
 
     public void kaufeFeld(){
@@ -57,7 +61,7 @@ public class Spieler {
     public void bezahleMiete(){
         kontostand = kontostand - Spielbrett.felderListe[aktuellerIndex].berechnePreis();
         Spielbrett.felderListe[GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).aktuellerIndex].getBesitzer().setKontostand(Spielbrett.felderListe[GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).aktuellerIndex].berechnePreis());
-
+        //System.out.println(GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()) + " bezahlt " + Spielbrett.felderListe[aktuellerIndex].berechnePreis() + " an " + Spielbrett.felderListe[GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).aktuellerIndex].getBesitzer());
     }
 
 }

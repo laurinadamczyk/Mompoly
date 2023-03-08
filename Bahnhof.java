@@ -1,28 +1,29 @@
 public class Bahnhof implements Feld{
     int index;
-    int preisstufe;
     int kaufpreis = 200;
     boolean zuKaufen=true;
+    public Spieler besitzer;
+    public int startpreis = 25;
 
-    public int berechnePreis(){return 0;}
-    public void setBesitzer(Spieler spieler){}
-    public Spieler getBesitzer(){return null;}
-    public void setPreisstufe(int preisstufe){}
+    public String getFarbe(){return null;}
 
-
-    public void ereignisAusführen(int aktuellerIndex) {
-        switch(aktuellerIndex){
-            case 5:  //bhf1
-                break;
-            case 15: //bhf2
-                break;
-            case 25: //bhf3
-                break;
-            case 35: //bhf4
-            default:
-                break;
+    public int berechnePreis(){ //preisberechnung für felder
+        int preisberechnung = 0;
+        if(GUIMompoly.spielerliste.get(GUIMompoly.i).getBahnhofsAnzahl() == 1){
+            preisberechnung = 1;
+        } else if (GUIMompoly.spielerliste.get(GUIMompoly.i).getBahnhofsAnzahl()  == 2){
+            preisberechnung = 2;
+        } else if (GUIMompoly.spielerliste.get(GUIMompoly.i).getBahnhofsAnzahl()  == 3){
+            preisberechnung = 4;
+        } else if (GUIMompoly.spielerliste.get(GUIMompoly.i).getBahnhofsAnzahl()  == 4){
+            preisberechnung = 8;
         }
+        int endpreis = startpreis * preisberechnung;
+        return endpreis;
     }
+    public void setBesitzer(Spieler spieler){this.besitzer = spieler;}
+    public Spieler getBesitzer(){return besitzer;}
+
     public int getKaufpreis(){
         return kaufpreis;
     }
@@ -33,7 +34,8 @@ public class Bahnhof implements Feld{
     public boolean getZuKaufen() {
         return zuKaufen;
     }
-
+    public void ereignisAusführen(int aktuellerIndex) {}
+    public void setPreisstufe(int preisstufe){}
 
     public int getIndex() {
         return index;
@@ -43,4 +45,9 @@ public class Bahnhof implements Feld{
     public Bahnhof(int index){
         this.index = index;
     }
+
+
 }
+
+
+

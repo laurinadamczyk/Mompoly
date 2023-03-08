@@ -15,6 +15,7 @@ public class Ereignisfeld implements Feld{
     public int getIndex() {
         return index;
     }
+    public String getFarbe(){return null;}
 
 
     @Override
