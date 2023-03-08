@@ -1,5 +1,3 @@
-import javax.swing.*;
-
 public class Main {
     public static void main(String[] args) {
 
@@ -17,7 +15,7 @@ public class Main {
         //Erstellung aller Felder mit Attributen, Index für das Array "felderList
 
 
-        GUIMompoly dialog = new GUIMompoly(new JButton());
+        GUIMompoly dialog = new GUIMompoly();
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);

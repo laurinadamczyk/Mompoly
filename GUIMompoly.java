@@ -9,10 +9,10 @@ public class GUIMompoly extends JDialog {
     private JButton buttonCancel;
     private JButton bWuerfel;
     private JButton bKaufen;
+    public static int i = 0;
 
 
-    public GUIMompoly(JButton bKaufen) {
-        this.bKaufen = bKaufen;
+    public GUIMompoly() {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
@@ -41,7 +41,6 @@ public class GUIMompoly extends JDialog {
             }
         });
 
-
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
@@ -58,19 +57,17 @@ public class GUIMompoly extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
+    public static int getAktuellerSpieler(){
+        return i;
+    }
+
     private void onOK() {
         // add your code here
         dispose();
     }
 
     private void onKaufen() {
-        if(i==spielerliste.size()-1){
-            i=0;
-        } else {
-            i=i+1;
-        }
         spielerliste.get(i).kaufeFeld();
-
     }
 
     private void onCancel() {
@@ -78,7 +75,7 @@ public class GUIMompoly extends JDialog {
         dispose();
     }
 
-   private int i = 0;
+
     private void onWuerfel(){
 
         if(i==spielerliste.size()-1){
@@ -91,9 +88,9 @@ public class GUIMompoly extends JDialog {
             bKaufen.setVisible(false);
         }
 
-        System.out.println(spielerliste.get(i));
-        System.out.println(spielerliste.get(i).aktuellerIndex);
-        System.out.println(spielerliste.get(i).kontostand);
+        System.out.println("Aktueller Spieler: " + spielerliste.get(i));
+        System.out.println("Aktuelles Feld: " + spielerliste.get(i).aktuellerIndex);
+        System.out.println("Kontostand: " + spielerliste.get(i).kontostand);
         System.out.println("");
     }
 
@@ -115,7 +112,7 @@ public class GUIMompoly extends JDialog {
             //Erstellung aller Felder mit Attributen, Index für das Array "felderList
 
 
-            GUIMompoly dialog = new GUIMompoly(bKaufen);
+            GUIMompoly dialog = new GUIMompoly();
             dialog.pack();
             dialog.setVisible(true);
             System.exit(0);
