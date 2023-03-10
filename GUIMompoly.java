@@ -16,6 +16,7 @@ public class GUIMompoly extends JDialog {
     private JButton bGelb;
     private JButton bGrün;
     private JButton bDunkelblau;
+
     public static int i = 0;
 
 
@@ -32,7 +33,7 @@ public class GUIMompoly extends JDialog {
                 onWuerfel();
             }
         });
-        this.bKaufen.addActionListener(new ActionListener() {
+        this.bBauen.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onBauen();
             }
@@ -43,42 +44,42 @@ public class GUIMompoly extends JDialog {
                 onKaufen();
             }
         });
-        this.bKaufen.addActionListener(new ActionListener() {
+        this.bBraun.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onBraun();
             }
         });
-        this.bKaufen.addActionListener(new ActionListener() {
+        this.bHellblau.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onHellblau();
             }
         });
-        this.bKaufen.addActionListener(new ActionListener() {
+        this.bPink.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onPink();
             }
         });
-        this.bKaufen.addActionListener(new ActionListener() {
+        this.bOrange.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOrange();
             }
         });
-        this.bKaufen.addActionListener(new ActionListener() {
+        this.bRot.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onRot();
             }
         });
-        this.bKaufen.addActionListener(new ActionListener() {
+        this.bGelb.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onGelb();
             }
         });
-        this.bKaufen.addActionListener(new ActionListener() {
+        this.bGrün.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onGrün();
             }
         });
-        this.bKaufen.addActionListener(new ActionListener() {
+        this.bDunkelblau.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onDunkelblau();
             }
@@ -95,23 +96,19 @@ public class GUIMompoly extends JDialog {
 
 
     private void onKaufen() {
-        farbButton(false);
         spielerliste.get(i).kaufeFeld();
         bKaufen.setVisible(false);
-        Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].setBesitzer(spielerliste.get(i));
-        spielerliste.get(i).besitzListe.add(Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex]);
-        Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].setPreisstufe(1);
-        if(Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getIndex() == 5 || Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getIndex() == 15 || Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getIndex() == 25 || Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getIndex() ==35) {
-            spielerliste.get(i).bahnhofsAnzahl = spielerliste.get(i).bahnhofsAnzahl +1;
-        }
-        System.out.println("");
-        farbButton(false);
-
-
-
+        farbabfrage(false);
     }
 
-
+    public void straßeVollständig() {
+        for (int j = 0; j < spielerliste.get(i).besitzListe.size(); j++) {
+            if (Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getFarbe() == spielerliste.get(i).besitzListe.get(j).getFarbe()){
+                spielerliste.get(i).besitzListe.get(j).setPreisstufe(2);
+                System.out.println("preisstufe auf 2 erhöht");
+            }
+        }
+    }
 
 
     private void onWuerfel(){
@@ -146,11 +143,15 @@ public class GUIMompoly extends JDialog {
         System.out.println("Aktueller Spieler: " + spielerliste.get(i));
         System.out.println("Aktuelles Feld: " + spielerliste.get(i).aktuellerIndex);
         System.out.println("Kontostand: " + spielerliste.get(i).kontostand);
+        System.out.println("Der Spieler besitzt Straßen: ");
+        for(int i = 0; i < spielerliste.get(this.i).besitzListe.size(); i++){
+            System.out.println(spielerliste.get(this.i).besitzListe.get(i).getFarbe());
+        }
         System.out.println("");
         farbButton(false);
     }
 
-    private void onBauen() {
+    public void farbabfrage(boolean sichtbar){
         int braun = 0;
         int hellblau = 0;
         int pink = 0;
@@ -170,32 +171,41 @@ public class GUIMompoly extends JDialog {
             else if(spielerliste.get(i).besitzListe.get(j).getFarbe() == "Dunkelblau"){dunkelblau++;}
         }
         if(braun==2){
-            bBraun.setVisible(true);
+            bBraun.setVisible(sichtbar);
+            straßeVollständig();
         }
         else if(hellblau==3){
-            bHellblau.setVisible(true);
+            bHellblau.setVisible(sichtbar);
+            straßeVollständig();
         }
         else if(pink==3){
-            bPink.setVisible(true);
+            bPink.setVisible(sichtbar);
+            straßeVollständig();
         }
         else if(orange==3){
-            bOrange.setVisible(true);
+            bOrange.setVisible(sichtbar);
+            straßeVollständig();
         }
         else if(rot==3){
-            bRot.setVisible(true);
+            bRot.setVisible(sichtbar);
+            straßeVollständig();
         }
         else if(gelb==3){
-            bGelb.setVisible(true);
+            bGelb.setVisible(sichtbar);
+            straßeVollständig();
         }
-       else if(grün==3){
-            bGrün.setVisible(true);
+        else if(grün==3){
+            bGrün.setVisible(sichtbar);
+            straßeVollständig();
         }
         else if (dunkelblau==2){
-            bDunkelblau.setVisible(true);
+            bDunkelblau.setVisible(sichtbar);
+            straßeVollständig();
         }
+    }
 
-
-
+    private void onBauen() {
+        farbabfrage(true);
     }
 
     public void farbButton(boolean b){

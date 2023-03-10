@@ -8,15 +8,19 @@ public class Ereignisfeld implements Feld{
     }
 
     public int berechnePreis(){return 0;}
+
     public void setBesitzer(Spieler spieler){}
+
     public Spieler getBesitzer(){return null;}
+
     public void setPreisstufe(int preisstufe){}
+
     @Override
     public int getIndex() {
         return index;
     }
-    public String getFarbe(){return null;}
 
+    public String getFarbe(){return null;}
 
     @Override
     public int getKaufpreis() {
@@ -48,6 +52,7 @@ public class Ereignisfeld implements Feld{
                 break;
         }
     }
+
     public Ereignisfeld(int index){
         this.index = index;
     }

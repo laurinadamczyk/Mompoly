@@ -9,6 +9,7 @@ public class Spieler {
     public int getKontostand() {
         return kontostand;
     }
+
     public int getAktuellerIndex(){
         return aktuellerIndex;
     }
@@ -16,6 +17,7 @@ public class Spieler {
     public void setKontostand(int preis) {
         this.kontostand = this.kontostand + preis;
     }
+
     public int getBahnhofsAnzahl(){
         return this.bahnhofsAnzahl;
     }
@@ -37,14 +39,18 @@ public class Spieler {
             GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).besitzListe.add(Spielbrett.felderListe[aktuellerIndex]);
             GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).setKontostand(  - Spielbrett.felderListe[aktuellerIndex].getKaufpreis());
             Spielbrett.felderListe[aktuellerIndex].setZuKaufen(false);
+            Spielbrett.felderListe[GUIMompoly.spielerliste.get(GUIMompoly.i).aktuellerIndex].setBesitzer(GUIMompoly.spielerliste.get(GUIMompoly.i));
+            Spielbrett.felderListe[GUIMompoly.spielerliste.get(GUIMompoly.i).aktuellerIndex].setPreisstufe(1);
+            if(Spielbrett.felderListe[GUIMompoly.spielerliste.get(GUIMompoly.i).aktuellerIndex].getIndex() == 5 || Spielbrett.felderListe[GUIMompoly.spielerliste.get(GUIMompoly.i).aktuellerIndex].getIndex() == 15 || Spielbrett.felderListe[GUIMompoly.spielerliste.get(GUIMompoly.i).aktuellerIndex].getIndex() == 25 || Spielbrett.felderListe[GUIMompoly.spielerliste.get(GUIMompoly.i).aktuellerIndex].getIndex() ==35) {
+                GUIMompoly.spielerliste.get(GUIMompoly.i).bahnhofsAnzahl = GUIMompoly.spielerliste.get(GUIMompoly.i).bahnhofsAnzahl + 1;
+            }
             System.out.println(GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()) + " hat soeben die Straße mit dem Index " + GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).getAktuellerIndex() + " gekauft." );
             System.out.println("Kaufpreis: " + Spielbrett.felderListe[aktuellerIndex].getKaufpreis());
             System.out.println("Kontostand: " + GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).getKontostand());
-
+            System.out.println("");
         }
-
-
     }
+
     public void zug(){ //eine runde würfeln
         int returnwert;
         int wuerfel1 = (int)((Math.random())*6 + 1);
@@ -58,6 +64,7 @@ public class Spieler {
         }
         aktuellerIndex = returnwert;
     }
+
     public void bezahleMiete(){
         kontostand = kontostand - Spielbrett.felderListe[aktuellerIndex].berechnePreis();
         Spielbrett.felderListe[GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).aktuellerIndex].getBesitzer().setKontostand(Spielbrett.felderListe[GUIMompoly.spielerliste.get(GUIMompoly.getAktuellerSpieler()).aktuellerIndex].berechnePreis());
