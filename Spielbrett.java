@@ -46,7 +46,7 @@ public class Spielbrett {
         Bahnhof Bahnhof3 = new Bahnhof( 25);
         Straße Lessingstraße = new Straße("Gelb", 26, 260, 22);
         Straße Schillerstraße = new Straße("Gelb", 27, 260, 22);
-        Straße Wasserwerk = new Straße("Neutral", 28, 150, 0);
+        Straße Wasserwerk = new Straße("Werk", 28, 150, 0);
         Straße Goethestraße = new Straße("Gelb", 29, 280, 24);
         Ereignisfeld Polizei = new Ereignisfeld( 30);
         Straße Rathausplatz = new Straße("Grün", 31, 300, 26);

@@ -93,43 +93,30 @@ public class GUIMompoly extends JDialog {
         return spielerliste.get(i);
     }
 
-
-
-
     private void onKaufen() {
         spielerliste.get(i).kaufeFeld();
         bKaufen.setVisible(false);
         farbabfrage(false);
     }
 
-    public void straßeVollständig() {
-        for (int j = 0; j < aktuellerSpieler().besitzListe.size(); j++) {
-            if (Spielbrett.aktuellesFeld().getFarbe() == aktuellerSpieler().besitzListe.get(j).getFarbe()){
-                aktuellerSpieler().besitzListe.get(j).setPreisstufe(2);
-                System.out.println("preisstufe auf 2 erhöht");
-            }
-        }
-    }
-
-
     private void onWuerfel(){
         farbButton(false);
         bKaufen.setVisible(true);
+        bBauen.setVisible(false);
         if(i==spielerliste.size()-1){
             i=0;
         } else {
             i=i+1;
         }
-        spielerliste.get(i).zug();
+        farbabfrage(false);
+        aktuellerSpieler().zug();
         if(Spielbrett.aktuellesFeld().getKaufpreis()==0){
             bKaufen.setVisible(false);
         }
-
         else if (Spielbrett.aktuellesFeld().getZuKaufen()==false) {
             bKaufen.setVisible(false);
-
-            if(Spielbrett.aktuellesFeld().getBesitzer() != spielerliste.get(i)){
-                spielerliste.get(i).bezahleMiete();
+            if(Spielbrett.aktuellesFeld().getBesitzer() != aktuellerSpieler()){
+                aktuellerSpieler().bezahleMiete();
                 System.out.println(aktuellerSpieler() + " bezahlt Miete ("+ Spielbrett.aktuellesFeld().berechnePreis() +") an " + Spielbrett.aktuellesFeld().getBesitzer());
                 System.out.println("");
             }
@@ -137,7 +124,7 @@ public class GUIMompoly extends JDialog {
 
         }
 
-        else if (spielerliste.get(i).kontostand<Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getKaufpreis()){
+        else if (aktuellerSpieler().kontostand<Spielbrett.aktuellesFeld().getKaufpreis()){
             bKaufen.setVisible(false);
         }
 
@@ -170,35 +157,57 @@ public class GUIMompoly extends JDialog {
         }
         if(braun==2){
             bBraun.setVisible(sichtbar);
-            straßeVollständig();
+            Spielbrett.felderListe[1].setPreisstufe(2);
+            Spielbrett.felderListe[3].setPreisstufe(2);
+            bBauen.setVisible(true);
         }
-        else if(hellblau==3){
+        if(hellblau==3){
             bHellblau.setVisible(sichtbar);
-            straßeVollständig();
+            Spielbrett.felderListe[6].setPreisstufe(2);
+            Spielbrett.felderListe[8].setPreisstufe(2);
+            Spielbrett.felderListe[9].setPreisstufe(2);
+            bBauen.setVisible(true);
         }
-        else if(pink==3){
+        if(pink==3){
             bPink.setVisible(sichtbar);
-            straßeVollständig();
+            Spielbrett.felderListe[11].setPreisstufe(2);
+            Spielbrett.felderListe[13].setPreisstufe(2);
+            Spielbrett.felderListe[14].setPreisstufe(2);
+            bBauen.setVisible(true);
         }
-        else if(orange==3){
+        if(orange==3){
             bOrange.setVisible(sichtbar);
-            straßeVollständig();
+            Spielbrett.felderListe[16].setPreisstufe(2);
+            Spielbrett.felderListe[18].setPreisstufe(2);
+            Spielbrett.felderListe[19].setPreisstufe(2);
+            bBauen.setVisible(true);
         }
-        else if(rot==3){
+        if(rot==3){
             bRot.setVisible(sichtbar);
-            straßeVollständig();
+            Spielbrett.felderListe[21].setPreisstufe(2);
+            Spielbrett.felderListe[23].setPreisstufe(2);
+            Spielbrett.felderListe[24].setPreisstufe(2);
+            bBauen.setVisible(true);
         }
-        else if(gelb==3){
+        if(gelb==3){
             bGelb.setVisible(sichtbar);
-            straßeVollständig();
+            Spielbrett.felderListe[26].setPreisstufe(2);
+            Spielbrett.felderListe[27].setPreisstufe(2);
+            Spielbrett.felderListe[29].setPreisstufe(2);
+            bBauen.setVisible(true);
         }
-        else if(grün==3){
+        if(grün==3){
             bGrün.setVisible(sichtbar);
-            straßeVollständig();
+            Spielbrett.felderListe[31].setPreisstufe(2);
+            Spielbrett.felderListe[32].setPreisstufe(2);
+            Spielbrett.felderListe[34].setPreisstufe(2);
+            bBauen.setVisible(true);
         }
-        else if (dunkelblau==2){
+        if (dunkelblau==2){
             bDunkelblau.setVisible(sichtbar);
-            straßeVollständig();
+            Spielbrett.felderListe[37].setPreisstufe(2);
+            Spielbrett.felderListe[39].setPreisstufe(2);
+            bBauen.setVisible(true);
         }
     }
 
@@ -206,7 +215,7 @@ public class GUIMompoly extends JDialog {
         farbabfrage(true);
     }
 
-    public void farbButton(boolean b){
+    public void farbButton(boolean b) {
         bBraun.setVisible(b);
         bHellblau.setVisible(b);
         bPink.setVisible(b);
@@ -217,17 +226,31 @@ public class GUIMompoly extends JDialog {
         bDunkelblau.setVisible(b);
     }
 
-    private void onBraun() {}
-    private void onHellblau() {}
-    private void onPink() {}
-    private void onOrange() {}
-    private void onRot() {}
-    private void onGelb() {}
-    private void onGrün() {}
+    public void kaufoption(){
+
+    }
+    private void onBraun() {
+
+    }
+    private void onHellblau() {
+
+    }
+    private void onPink() {
+
+    }
+    private void onOrange() {
+
+    }
+    private void onRot() {
+
+    }
+    private void onGelb() {
+
+    }
+    private void onGrün() {
+
+    }
     private void onDunkelblau() {}
-
-
-
     static Spieler sp1= new Spieler();
     static Spieler sp2= new Spieler();
     static Spielbrett s1 = new Spielbrett();
@@ -236,9 +259,7 @@ public class GUIMompoly extends JDialog {
             spielerliste.add(sp1);
             spielerliste.add(sp2);
             s1.erstelleSpielbrett();
-            //Erstellung aller Felder mit Attributen, Index für das Array "felderList
-
-
+            //Erstellung aller Felder mit Attributen, Index für das Array "felderListe"
             GUIMompoly dialog = new GUIMompoly();
             dialog.pack();
             dialog.setVisible(true);
