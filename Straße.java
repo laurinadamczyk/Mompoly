@@ -4,6 +4,7 @@ public class Straße implements Feld {
     int kaufpreis;
     boolean zuKaufen=true;
     public Spieler besitzer;
+    public String name;
 
     public int getIndex() {
         return index;
@@ -29,9 +30,13 @@ public class Straße implements Feld {
     }
     public int getKaufpreis() {
         return kaufpreis;
-
     }
-    public Straße(String farbe, int index, int kaufpreis, int startpreis){
+    public String getName(){
+        return this.name;
+        }
+
+    public Straße(String name, String farbe, int index, int kaufpreis, int startpreis){
+        this.name = name;
         this.index = index;
         this.kaufpreis = kaufpreis;
         this.farbe = farbe;

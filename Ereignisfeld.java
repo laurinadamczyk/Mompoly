@@ -21,7 +21,9 @@ public class Ereignisfeld implements Feld{
     }
 
     public String getFarbe(){return null;}
-
+    public String getName(){
+        return null;
+    }
     @Override
     public int getKaufpreis() {
         return kaufpreis;
