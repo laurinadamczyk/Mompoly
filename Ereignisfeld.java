@@ -34,19 +34,21 @@ public class Ereignisfeld implements Feld{
 
     public void ereignisAusführen(int aktuellerIndex){
         switch(aktuellerIndex){
-            case 2, 17, 33: System.out.println("gemeischaftskarte");//gemeinschaftskarte ziehen
+            case 2, 17, 33: //gemeinschaftskarte ziehen
                 break;
-            case 4:
+            case 4: GUIMompoly.aktuellerSpieler().addKontostand(-200);
+                Spielbrett.addMitte(200);
                 break;
-            case 38: //100 bezahlen
+            case 38: GUIMompoly.aktuellerSpieler().addKontostand(-100);
+                Spielbrett.addMitte(100);
                 break;
             case 7, 22, 36: //fragekarte ziehen
                 break;
-            case 20: //alles geld aus mitte
+            case 20: GUIMompoly.aktuellerSpieler().addKontostand(Spielbrett.getMitte());
+                Spielbrett.ausgecasht();
                 break;
-            case 30: //ins gefängnis
-                break;
-            case 40: //gefängnis
+            case 30: GUIMompoly.aktuellerSpieler().setAktuellerIndex(40);
+                GUIMompoly.aktuellerSpieler().setGefaengnis(true);
                 break;
             default:
                 break;

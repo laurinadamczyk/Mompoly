@@ -89,9 +89,10 @@ public class GUIMompoly extends JDialog {
 
     }
 
-    public static int getAktuellerSpieler(){
-        return i;
+    public static Spieler aktuellerSpieler(){
+        return spielerliste.get(i);
     }
+
 
 
 
@@ -102,9 +103,9 @@ public class GUIMompoly extends JDialog {
     }
 
     public void straßeVollständig() {
-        for (int j = 0; j < spielerliste.get(i).besitzListe.size(); j++) {
-            if (Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getFarbe() == spielerliste.get(i).besitzListe.get(j).getFarbe()){
-                spielerliste.get(i).besitzListe.get(j).setPreisstufe(2);
+        for (int j = 0; j < aktuellerSpieler().besitzListe.size(); j++) {
+            if (Spielbrett.aktuellesFeld().getFarbe() == aktuellerSpieler().besitzListe.get(j).getFarbe()){
+                aktuellerSpieler().besitzListe.get(j).setPreisstufe(2);
                 System.out.println("preisstufe auf 2 erhöht");
             }
         }
@@ -120,16 +121,16 @@ public class GUIMompoly extends JDialog {
             i=i+1;
         }
         spielerliste.get(i).zug();
-        if(Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getKaufpreis()==0){
+        if(Spielbrett.aktuellesFeld().getKaufpreis()==0){
             bKaufen.setVisible(false);
         }
 
-        else if (Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getZuKaufen()==false) {
+        else if (Spielbrett.aktuellesFeld().getZuKaufen()==false) {
             bKaufen.setVisible(false);
 
-            if(Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getBesitzer() != spielerliste.get(i)){
+            if(Spielbrett.aktuellesFeld().getBesitzer() != spielerliste.get(i)){
                 spielerliste.get(i).bezahleMiete();
-                System.out.println(spielerliste.get(i) + " bezahlt Miete ("+ Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].berechnePreis() +") an " + Spielbrett.felderListe[spielerliste.get(i).aktuellerIndex].getBesitzer());
+                System.out.println(aktuellerSpieler() + " bezahlt Miete ("+ Spielbrett.aktuellesFeld().berechnePreis() +") an " + Spielbrett.aktuellesFeld().getBesitzer());
                 System.out.println("");
             }
             else{System.out.println("Die Straße gehört dir.");}
@@ -140,13 +141,10 @@ public class GUIMompoly extends JDialog {
             bKaufen.setVisible(false);
         }
 
-        System.out.println("Aktueller Spieler: " + spielerliste.get(i));
-        System.out.println("Aktuelles Feld: " + spielerliste.get(i).aktuellerIndex);
-        System.out.println("Kontostand: " + spielerliste.get(i).kontostand);
-        System.out.println("Der Spieler besitzt Straßen: ");
-        for(int i = 0; i < spielerliste.get(this.i).besitzListe.size(); i++){
-            System.out.println(spielerliste.get(this.i).besitzListe.get(i).getFarbe());
-        }
+        System.out.println("Aktueller Spieler: " + aktuellerSpieler());
+        System.out.println("Aktuelles Feld: " + aktuellerSpieler().aktuellerIndex);
+        System.out.println("Kontostand: " + aktuellerSpieler().kontostand);
+
         System.out.println("");
         farbButton(false);
     }
@@ -160,15 +158,15 @@ public class GUIMompoly extends JDialog {
         int gelb = 0;
         int grün = 0;
         int dunkelblau = 0;
-        for(int j = 0; j < spielerliste.get(i).besitzListe.size() ; j++ ){
-            if(spielerliste.get(i).besitzListe.get(j).getFarbe() == "Braun"){braun++;}
-            else if(spielerliste.get(i).besitzListe.get(j).getFarbe() == "Hellblau"){hellblau++;}
-            else if(spielerliste.get(i).besitzListe.get(j).getFarbe() == "Pink"){pink++;}
-            else if(spielerliste.get(i).besitzListe.get(j).getFarbe() == "Orange"){orange++;}
-            else if(spielerliste.get(i).besitzListe.get(j).getFarbe() == "Rot"){rot++;}
-            else if(spielerliste.get(i).besitzListe.get(j).getFarbe() == "Gelb"){gelb++;}
-            else if(spielerliste.get(i).besitzListe.get(j).getFarbe() == "Grün"){grün++;}
-            else if(spielerliste.get(i).besitzListe.get(j).getFarbe() == "Dunkelblau"){dunkelblau++;}
+        for(int j = 0; j < aktuellerSpieler().besitzListe.size() ; j++ ){
+            if(aktuellerSpieler().besitzListe.get(j).getFarbe() == "Braun"){braun++;}
+            else if(aktuellerSpieler().besitzListe.get(j).getFarbe() == "Hellblau"){hellblau++;}
+            else if(aktuellerSpieler().besitzListe.get(j).getFarbe() == "Pink"){pink++;}
+            else if(aktuellerSpieler().besitzListe.get(j).getFarbe() == "Orange"){orange++;}
+            else if(aktuellerSpieler().besitzListe.get(j).getFarbe() == "Rot"){rot++;}
+            else if(aktuellerSpieler().besitzListe.get(j).getFarbe() == "Gelb"){gelb++;}
+            else if(aktuellerSpieler().besitzListe.get(j).getFarbe() == "Grün"){grün++;}
+            else if(aktuellerSpieler().besitzListe.get(j).getFarbe() == "Dunkelblau"){dunkelblau++;}
         }
         if(braun==2){
             bBraun.setVisible(sichtbar);
@@ -232,17 +230,12 @@ public class GUIMompoly extends JDialog {
 
     static Spieler sp1= new Spieler();
     static Spieler sp2= new Spieler();
+    static Spielbrett s1 = new Spielbrett();
 
     public static void main(String[] args) {
             spielerliste.add(sp1);
             spielerliste.add(sp2);
-            Spielbrett s1 = new Spielbrett();
             s1.erstelleSpielbrett();
-            System.out.println((s1.felderListe[sp1.aktuellerIndex]).getKaufpreis());
-            Feld aktuellesFeld = s1.felderListe[sp1.aktuellerIndex];
-
-            aktuellesFeld.ereignisAusführen(sp1.aktuellerIndex);
-
             //Erstellung aller Felder mit Attributen, Index für das Array "felderList
 
 

@@ -1,7 +1,23 @@
 import java.lang.Math;
 public class Spielbrett {
     static Feld[] felderListe = new Feld[41]; //erstellung array für felder
-    public void erstelleSpielbrett(){ //erstellung aller felder
+    public static int mitte;
+    public static int getMitte(){
+        return mitte;
+    }
+    public static void addMitte(int preis){
+        mitte = mitte + preis;
+    }
+
+    public static void ausgecasht(){
+        mitte = 0;
+    }
+
+    public static Feld aktuellesFeld(){
+        return Spielbrett.felderListe[GUIMompoly.aktuellerSpieler().aktuellerIndex];
+    }
+
+    public void erstelleSpielbrett(){ //erstellung aller// felder
         Ereignisfeld Los = new Ereignisfeld ( 0);
         Straße Badstraße = new Straße("Braun", 1, 60, 2);
         Ereignisfeld Gemeinschaftsfeld1 = new Ereignisfeld( 2);
