@@ -16,6 +16,8 @@ public class GUIMompoly extends JDialog {
     private JButton bGelb;
     private JButton bGrün;
     private JButton bDunkelblau;
+    private JButton bZugBeenden;
+    private JLabel lAktuellerSpieler;
 
     public static int i = 0;
 
@@ -25,6 +27,8 @@ public class GUIMompoly extends JDialog {
         setModal(true);
         getRootPane().setDefaultButton(bWuerfel);
         bKaufen.setVisible(false);
+        bBauen.setVisible(false);
+        bZugBeenden.setVisible(false);
         farbButton(false);
 
 
@@ -84,6 +88,11 @@ public class GUIMompoly extends JDialog {
                 onDunkelblau();
             }
         });
+        this.bZugBeenden.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                onZugBeenden();
+            }
+        });
 
 
 
@@ -99,13 +108,24 @@ public class GUIMompoly extends JDialog {
         farbabfrage(false);
     }
 
-    private void onWuerfel(){
-        farbButton(false);
+    public void onZugBeenden(){
+        bZugBeenden.setVisible(false);
+        bWuerfel.setVisible(true);
         bBauen.setVisible(false);
+        farbButton(false);
         if(i==spielerliste.size()-1){
             i=0;
         } else {
             i=i+1;
+        }
+        lAktuellerSpieler.setText(i+"");
+    }
+
+    private void onWuerfel(){
+        bWuerfel.setVisible(false);
+        farbButton(false);
+        if(aktuellerSpieler().bWuerfelnSichbarkeit = false) {
+            bWuerfel.setVisible(false);
         }
         aktuellerSpieler().zug();
         //ALLLLELEES HIER FDDRUTNERT
@@ -136,6 +156,7 @@ public class GUIMompoly extends JDialog {
 
         System.out.println("");
         farbButton(false);
+        bZugBeenden.setVisible(true);
     }
 
     public void setbKaufen(){
@@ -257,13 +278,11 @@ public class GUIMompoly extends JDialog {
 
     }
     private void onDunkelblau() {}
-    static Spieler JwieJoseph= new Spieler();
     static Spieler Yuri= new Spieler();
     static Spieler Laurin = new Spieler();
     static Spielbrett s1 = new Spielbrett();
 
     public static void main(String[] args) {
-            spielerliste.add(JwieJoseph);
             spielerliste.add(Yuri);
             spielerliste.add(Laurin);
             s1.erstelleSpielbrett();
@@ -272,7 +291,6 @@ public class GUIMompoly extends JDialog {
             dialog.pack();
             dialog.setVisible(true);
             System.exit(0);
-
     }
 }
 

@@ -2,7 +2,9 @@ import java.util.*;
 
 public class Spieler {
     public int aktuellerIndex;
+    public int paschcounter;
     boolean gefaengnis = false;
+    public boolean bWuerfelnSichbarkeit = false;
     int gefeangniscounter;
     int zuBesuch = 10;
     public int kontostand = 2000;
@@ -62,6 +64,7 @@ public class Spieler {
     }
 
     public void zug(){ //eine runde würfeln
+        bWuerfelnSichbarkeit = true;
         int returnwert;
         int wuerfel1 = (int)((Math.random())*6 + 1);
         int wuerfel2 = (int)((Math.random())*6 + 1);
@@ -88,6 +91,13 @@ public class Spieler {
             }
         }
         Spielbrett.aktuellesFeld().ereignisAusführen(GUIMompoly.aktuellerSpieler().aktuellerIndex);
+        if(wuerfel1 == wuerfel2){
+            paschcounter++;
+            bWuerfelnSichbarkeit = true;
+        }
+        if(paschcounter == 3){
+            gefaengnis = true;
+        }
     }
     public void bezahleMiete() {
         addKontostand(-Spielbrett.aktuellesFeld().berechnePreis());
