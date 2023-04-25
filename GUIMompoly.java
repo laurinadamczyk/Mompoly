@@ -1,6 +1,15 @@
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+
+
 
 public class GUIMompoly extends JDialog {
     static ArrayList<Spieler> spielerliste = new ArrayList<>();
@@ -21,8 +30,14 @@ public class GUIMompoly extends JDialog {
 
     public static int i = 0;
 
+    BufferedImage myPicture = ImageIO.read(new File("C:\\Users\\la002310\\Documents\\info\\branches\\dateien\\monlpoly.png"));
+    JLabel picLabel = new JLabel(new ImageIcon());
 
-    public GUIMompoly() {
+    public void bildeinfügen(BufferedImage l){
+        add(l);
+    }
+
+    public GUIMompoly() throws IOException {
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(bWuerfel);
@@ -283,14 +298,17 @@ public class GUIMompoly extends JDialog {
     static Spielbrett s1 = new Spielbrett();
 
     public static void main(String[] args) {
+
             spielerliste.add(Yuri);
             spielerliste.add(Laurin);
             s1.erstelleSpielbrett();
             //Erstellung aller Felder mit Attributen, Index für das Array "felderListe"
             GUIMompoly dialog = new GUIMompoly();
+            dialog.bildeinfügen(myPicture);
             dialog.pack();
             dialog.setVisible(true);
             System.exit(0);
+            add(myPicture);
     }
 }
 

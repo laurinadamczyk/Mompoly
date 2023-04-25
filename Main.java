@@ -1,5 +1,7 @@
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Spieler sp1 = new Spieler();
         Spielbrett s1 = new Spielbrett();
         s1.erstelleSpielbrett();
