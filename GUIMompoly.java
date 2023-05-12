@@ -30,12 +30,9 @@ public class GUIMompoly extends JDialog {
 
     public static int i = 0;
 
-    BufferedImage myPicture = ImageIO.read(new File("C:\\Users\\la002310\\Documents\\info\\branches\\dateien\\monlpoly.png"));
-    JLabel picLabel = new JLabel(new ImageIcon());
+    //BufferedImage myPicture = ImageIO.read(new File("C:\\Users\\la002310\\Documents\\info\\branches\\dateien\\monlpoly.png"));
+    //JLabel picLabel = new JLabel(new ImageIcon());
 
-    public void bildeinfügen(BufferedImage l){
-        add(l);
-    }
 
     public GUIMompoly() throws IOException {
         setContentPane(contentPane);
@@ -127,6 +124,7 @@ public class GUIMompoly extends JDialog {
         bZugBeenden.setVisible(false);
         bWuerfel.setVisible(true);
         bBauen.setVisible(false);
+        bKaufen.setVisible(false);
         farbButton(false);
         if(i==spielerliste.size()-1){
             i=0;
@@ -297,18 +295,16 @@ public class GUIMompoly extends JDialog {
     static Spieler Laurin = new Spieler();
     static Spielbrett s1 = new Spielbrett();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
             spielerliste.add(Yuri);
             spielerliste.add(Laurin);
             s1.erstelleSpielbrett();
             //Erstellung aller Felder mit Attributen, Index für das Array "felderListe"
             GUIMompoly dialog = new GUIMompoly();
-            dialog.bildeinfügen(myPicture);
             dialog.pack();
             dialog.setVisible(true);
             System.exit(0);
-            add(myPicture);
     }
 }
 
