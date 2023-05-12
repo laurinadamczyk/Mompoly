@@ -1,19 +1,20 @@
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
+import java.io.*;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
 
 
-public class GUIMompoly extends JDialog {
+
+
+public class GUIMompoly extends JDialog{
+    BufferedImage img = ImageIO.read(new File("C:\\Users\\la002310\\Documents\\Mompoly.git\\branches\\dateien\\monopoly-printable-game-board-paper-craft.jpg"));
+    JLabel pic = new JLabel(new ImageIcon(img));
     static ArrayList<Spieler> spielerliste = new ArrayList<>();
-    private JPanel contentPane;
+    public JPanel contentPane;
     private JButton bWuerfel;
     private JButton bKaufen;
     private JButton bBauen;
@@ -27,14 +28,12 @@ public class GUIMompoly extends JDialog {
     private JButton bDunkelblau;
     private JButton bZugBeenden;
     private JLabel lAktuellerSpieler;
-
     public static int i = 0;
 
-    //BufferedImage myPicture = ImageIO.read(new File("C:\\Users\\la002310\\Documents\\info\\branches\\dateien\\monlpoly.png"));
-    //JLabel picLabel = new JLabel(new ImageIcon());
 
 
     public GUIMompoly() throws IOException {
+        contentPane.add(pic);
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(bWuerfel);
@@ -295,8 +294,23 @@ public class GUIMompoly extends JDialog {
     static Spieler Laurin = new Spieler();
     static Spielbrett s1 = new Spielbrett();
 
-    public static void main(String[] args) throws IOException {
+     public void ImagePanel() {
+        try
+        {
+            JFrame f = new JFrame("Add an Image to a JPanel");
+            contentPane.setBounds(0, 0, 1000, 1000);
+            BufferedImage img = ImageIO.read(new File("C:\\Users\\la002310\\Documents\\Mompoly.git\\branches\\dateien\\monopoly-printable-game-board-paper-craft.jpg"));
+            JLabel pic = new JLabel(new ImageIcon(img));
+            contentPane.add(pic);
+            f.add(contentPane);
+            f.setSize(1000, 1000);
+            f.setLayout(null);
+            f.setVisible(true);
+        }
+        catch (IOException e) {}
+    }
 
+    public static void main(String[] args) throws IOException {
             spielerliste.add(Yuri);
             spielerliste.add(Laurin);
             s1.erstelleSpielbrett();
