@@ -37,13 +37,16 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "jdk.selected.JAVA_MODULE": "openjdk-19",
-    "last_opened_file_path": "C:/Users/la002310/Documents/info/branches/dateien",
+    "last_opened_file_path": "C:/Users/Joseph/Documents/Schule/Oberstufe/1. Semester/!LK Informatik/!Mompoly/branches/dateien",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.lookFeel"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RunManager">
-    <configuration name="GUIMompoly" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="GUIMompoly" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="GUIMompoly" />
       <module name="dateien" />
       <method v="2">

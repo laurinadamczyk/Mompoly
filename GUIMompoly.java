@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.awt.image.BufferedImage;
@@ -11,10 +12,8 @@ import javax.imageio.ImageIO;
 
 
 public class GUIMompoly extends JDialog{
-    BufferedImage img = ImageIO.read(new File("C:\\Users\\la002310\\Documents\\Mompoly.git\\branches\\dateien\\monopoly-printable-game-board-paper-craft.jpg"));
-    JLabel pic = new JLabel(new ImageIcon(img));
     static ArrayList<Spieler> spielerliste = new ArrayList<>();
-    public JPanel contentPane;
+    public JPanel contentPane= new JPanel();
     private JButton bWuerfel;
     private JButton bKaufen;
     private JButton bBauen;
@@ -33,7 +32,6 @@ public class GUIMompoly extends JDialog{
 
 
     public GUIMompoly() throws IOException {
-        contentPane.add(pic);
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(bWuerfel);
@@ -294,21 +292,21 @@ public class GUIMompoly extends JDialog{
     static Spieler Laurin = new Spieler();
     static Spielbrett s1 = new Spielbrett();
 
-     public void ImagePanel() {
+     /*public void ImagePanel() {
         try
         {
             JFrame f = new JFrame("Add an Image to a JPanel");
             contentPane.setBounds(0, 0, 1000, 1000);
-            BufferedImage img = ImageIO.read(new File("C:\\Users\\la002310\\Documents\\Mompoly.git\\branches\\dateien\\monopoly-printable-game-board-paper-craft.jpg"));
+            BufferedImage img = ImageIO.read(new File("I:\\1. Semester\\Informatik LK\\!Mompoly\\branches\\dateien\\bed1c80983e6f0da713b30acfce0a4b6.jpg"));
             JLabel pic = new JLabel(new ImageIcon(img));
             contentPane.add(pic);
             f.add(contentPane);
             f.setSize(1000, 1000);
-            f.setLayout(null);
+            f.setLayout(new BorderLayout());
             f.setVisible(true);
         }
         catch (IOException e) {}
-    }
+    }*/
 
     public static void main(String[] args) throws IOException {
             spielerliste.add(Yuri);
@@ -316,9 +314,12 @@ public class GUIMompoly extends JDialog{
             s1.erstelleSpielbrett();
             //Erstellung aller Felder mit Attributen, Index für das Array "felderListe"
             GUIMompoly dialog = new GUIMompoly();
-            dialog.pack();
+            new Bild();
+            //dialog.pack();
             dialog.setVisible(true);
+            //dialog.ImagePanel();
             System.exit(0);
+
     }
 }
 
