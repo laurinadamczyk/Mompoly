@@ -14,6 +14,5 @@ public class Main {
         GUIMompoly dialog = new GUIMompoly();
         dialog.pack();
         dialog.setVisible(true);
-        System.exit(0);
     }
 }

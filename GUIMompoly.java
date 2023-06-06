@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.nio.Buffer;
 import java.util.ArrayList;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -11,9 +12,11 @@ import javax.imageio.ImageIO;
 
 
 
-public class GUIMompoly extends JDialog{
+public class GUIMompoly extends JFrame{
     static ArrayList<Spieler> spielerliste = new ArrayList<>();
-    public JPanel contentPane= new JPanel();
+    public JPanel contentPane;
+    public JPanel panel1=new JPanel();
+    public JPanel panel2=new JPanel();
     private JButton bWuerfel;
     private JButton bKaufen;
     private JButton bBauen;
@@ -28,12 +31,14 @@ public class GUIMompoly extends JDialog{
     private JButton bZugBeenden;
     private JLabel lAktuellerSpieler;
     public static int i = 0;
+    public int y= 50;
+    public int ichzählemit= 0;
 
 
 
     public GUIMompoly() throws IOException {
         setContentPane(contentPane);
-        setModal(true);
+        //setModal(true);
         getRootPane().setDefaultButton(bWuerfel);
         bKaufen.setVisible(false);
         bBauen.setVisible(false);
@@ -128,7 +133,7 @@ public class GUIMompoly extends JDialog{
         } else {
             i=i+1;
         }
-        lAktuellerSpieler.setText(i+"");
+        //lAktuellerSpieler.setText(i+"");
     }
 
     private void onWuerfel(){
@@ -167,7 +172,57 @@ public class GUIMompoly extends JDialog{
         System.out.println("");
         farbButton(false);
         bZugBeenden.setVisible(true);
+
+
+
+if(this.ichzählemit == 40){
+    this.ichzählemit=0;
+    this.y=62;
+
+    if(this.ichzählemit<=9){
+        panel2.setBounds(750-y,645 , 100, 100);
+
     }
+
+    else if(this.ichzählemit>9 && this.ichzählemit<=19){
+        panel2.setBounds(142,1250-y , 100, 100);
+    }
+
+    else if(this.ichzählemit>19&& this.ichzählemit<=29){
+        panel2.setBounds(-1089+y,22 , 100, 100);
+    }
+    else if(this.ichzählemit>29){
+        panel2.setBounds(759,-1833+y , 100, 100);
+    }
+
+
+    this.y=y+62;
+    this.ichzählemit++;
+}
+else {
+        if(this.ichzählemit<=9){
+            panel2.setBounds(750-y,645 , 100, 100);
+
+        }
+
+        else if(this.ichzählemit>9 && this.ichzählemit<=19){
+            panel2.setBounds(142,1250-y , 100, 100);
+        }
+
+        else if(this.ichzählemit>19&& this.ichzählemit<=29){
+            panel2.setBounds(-1089+y,22 , 100, 100);
+        }
+        else if(this.ichzählemit>29){
+            panel2.setBounds(759,-1833+y , 100, 100);
+        }
+
+
+        this.y=y+62;
+
+        this.ichzählemit++;
+    }
+}
+
 
     public void setbKaufen(){
         bKaufen.setVisible(false);
@@ -292,34 +347,53 @@ public class GUIMompoly extends JDialog{
     static Spieler Laurin = new Spieler();
     static Spielbrett s1 = new Spielbrett();
 
-     /*public void ImagePanel() {
+    public void ImagePanel() {
         try
         {
-            JFrame f = new JFrame("Add an Image to a JPanel");
-            contentPane.setBounds(0, 0, 1000, 1000);
-            BufferedImage img = ImageIO.read(new File("I:\\1. Semester\\Informatik LK\\!Mompoly\\branches\\dateien\\bed1c80983e6f0da713b30acfce0a4b6.jpg"));
-            JLabel pic = new JLabel(new ImageIcon(img));
-            contentPane.add(pic);
+            JFrame f = new JFrame("Mompoly Frame");
+            panel1.setBounds(0, 0, 1000, 1000);
+            BufferedImage spielbrett = ImageIO.read(new File("D:\\Schule\\Oberstufe\\Semester_2\\Informatik\\Mompoly\\Mompoly.git\\branches\\dateien\\spielbrett.png"));
+            Image image1 = spielbrett.getScaledInstance(900, 900, Image.SCALE_DEFAULT);
+            JLabel bild1 = new JLabel(new ImageIcon(image1));
+            panel1.add(bild1);
+
+
+            panel2.setBounds(750, 645, 100, 100);
+            BufferedImage figur = ImageIO.read(new File("D:\\Schule\\Oberstufe\\Semester_2\\Informatik\\Mompoly\\Mompoly.git\\branches\\dateien\\Bild_2023-05-19_231616443-PhotoRoom.png-PhotoRoom.png"));
+            Image image2 = figur.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+
+            JLabel bild2 = new JLabel(new ImageIcon(image2));
+            panel2.add(bild2);
+            f.add(panel2);
+            f.add(panel1);
+
+
+            contentPane.setBounds(0, 820, 1000, 150);
             f.add(contentPane);
+
+
+
+
+
             f.setSize(1000, 1000);
-            f.setLayout(new BorderLayout());
+            f.setLayout(null);
             f.setVisible(true);
+
+
         }
         catch (IOException e) {}
-    }*/
+    }
 
     public static void main(String[] args) throws IOException {
-            spielerliste.add(Yuri);
-            spielerliste.add(Laurin);
-            s1.erstelleSpielbrett();
-            //Erstellung aller Felder mit Attributen, Index für das Array "felderListe"
-            GUIMompoly dialog = new GUIMompoly();
-            new Bild();
-            //dialog.pack();
-            dialog.setVisible(true);
-            //dialog.ImagePanel();
-            System.exit(0);
+        spielerliste.add(Yuri);
+        spielerliste.add(Laurin);
+        s1.erstelleSpielbrett();
+        //Erstellung aller Felder mit Attributen, Index für das Array "felderListe"
+        GUIMompoly dialog = new GUIMompoly();
+
+        dialog.setVisible(false);
+        dialog.ImagePanel();
+
 
     }
 }
-

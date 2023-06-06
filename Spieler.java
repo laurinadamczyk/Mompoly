@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.*;
 
 public class Spieler {
@@ -62,6 +63,7 @@ public class Spieler {
             System.out.println("");
         }
     }
+
 
     public void zug(){ //eine runde würfeln
         bWuerfelnSichbarkeit = true;
