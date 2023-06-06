@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.util.*;
 
 public class Spieler {
+    public int x;
+    public int y;
     public int aktuellerIndex;
     public int paschcounter;
     boolean gefaengnis = false;
@@ -30,6 +32,15 @@ public class Spieler {
     public int getBahnhofsAnzahl(){
         return this.bahnhofsAnzahl;
     }
+    public int getX(){return this.x;}
+    public int getY(){return this.y;}
+    public void setX(int x){
+        this.x = x;
+    }
+    public void setY(int y){
+        this.y = y;
+    }
+
 
     public void kaufeFeld(){
         if(Spielbrett.aktuellesFeld().getKaufpreis()==0){
@@ -99,6 +110,91 @@ public class Spieler {
         }
         if(paschcounter == 3){
             gefaengnis = true;
+        }
+        switch(returnwert){
+            case 0 : x = 922-GUIMompoly.; y = 872;
+                break;
+            case 1 : x = 767; y = 872;
+                break;
+            case 2 : x = 687; y = 872;
+                break;
+            case 3 : x = 607; y = 872;
+                break;
+            case 4 : x = 527; y = 872;
+                break;
+            case 5 : x = 447; y = 872;
+                break;
+            case 6 : x = 367; y = 872;
+                break;
+            case 7 : x = 287; y = 872;
+                break;
+            case 8 : x = 207; y = 872;
+                break;
+            case 9 : x = 127; y = 872;
+                break;
+            case 10 : x = 47; y = 872;
+                break;
+            case 11 : x = 20; y = 720;
+                break;
+            case 12 : x = 20; y = 660;
+                break;
+            case 13 : x = 20; y = 580;
+                break;
+            case 14 : x = 20; y = 500;
+                break;
+            case 15 : x = 20; y = 420;
+                break;
+            case 16 : x = 20; y = 340;
+                break;
+            case 17 : x = 20; y = 260;
+                break;
+            case 18 : x = 20; y = 800;
+                break;
+            case 19 : x = 20; y = 800;
+                break;
+            case 20 : x = 20; y = 800;
+                break;
+            case 21 : x = 100; y = 800;
+                break;
+            case 22 : x = 180; y = 800;
+                break;
+            case 23 : x = 580; y = 800;
+                break;
+            case 24 : x = 500; y = 800;
+                break;
+            case 25 : x = 420; y = 800;
+                break;
+            case 26 : x = 340; y = 800;
+                break;
+            case 27 : x = 260; y = 800;
+                break;
+            case 28 : x = 180; y = 800;
+                break;
+            case 29 : x = 100; y = 800;
+                break;
+            case 30 : x = 20; y = 800;
+                break;
+            case 31 : x = 20; y = 720;
+                break;
+            case 32 : x = 800; y = 660;
+                break;
+            case 33 : x = 750; y = 580;
+                break;
+            case 34 : x = 800; y = 500;
+                break;
+            case 35 : x = 750; y = 420;
+                break;
+            case 36 : x = 800; y = 340;
+                break;
+            case 37 : x = 750; y = 260;
+                break;
+            case 38 :
+                break;
+            case 39 :
+                break;
+            case 40 :
+                break;
+
         }
     }
     public void bezahleMiete() {
